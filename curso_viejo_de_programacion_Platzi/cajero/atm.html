@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero automatico</title>
+
+    <style>
+
+        body {
+            /* La manera de centrar una caja o elemento HTML (no su contenido) es darle un valor "auto"al margin-left y al margin-right. */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: lightcyan;
+            font-family: sans-serif;
+        }
+
+        #titulo {
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="titulo">CAJERO AUTOMATICO</h1>
+    <p>
+        <img src="cajero.webp" alt="Cajero automatico">
+    </p>
+    <p>
+        <input id="dinero" type="number">
+        <input id="extraer" type="button" value="Extraer">
+    </p>
+    <p id="resultado"></p>
+
+    <script src="cajero.js"></script>
+</body>
+</html>

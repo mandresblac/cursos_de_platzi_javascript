@@ -1,0 +1,279 @@
+/* Importamos URL de fuente de letras de la pagina fonts.google */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@200;300;400;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #231955;
+}
+
+
+
+/* ------------------------ SECCIÓN DE SELECCIONAR MASCOTA --------------------------- */
+
+
+#seleccionar-mascota {
+    display: flex; /*Con esta linea especificamos que vamos a trabajar con la tecnología flexbox  */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    font-family: 'Fredoka One', cursive;
+    color: #FFE5B4;
+    font-size: 40px;
+}
+
+.subtitulo {
+    color: #FFE5B4;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.tarjetas,
+.tarjetas-ataques {
+    display: flex;
+    gap: 10px; /*la propiedad gap de Flexbox permite añadir espacios entre elementos*/
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* width: 44vw; */
+}
+
+/* #contenedor-tarjetas {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+} */
+
+.tarjeta-de-mokepon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 220px;
+    height: 220px;
+    background-color: #1F4690;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.tarjeta-de-mokepon:hover {
+    background-color:  #0078AA;
+    border: 2px solid #FFE5B4;
+    cursor: pointer; /*  El ícono del cursor cambia a una manita al posicionarlo sobre los botones. */
+}
+
+/* La pseudoclase :active siempre va después de la pseucoclase :hover y se activa cuando se hace click con el mouse */
+.tarjeta-de-mokepon:active {
+    background-color: #1A374D;
+    color: white;
+}
+
+.tarjeta-de-mokepon p {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #FFE5B4;
+}
+
+.tarjeta-de-mokepon img {
+    width: 110px;
+}
+
+#boton-mascota{
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    color: #FFE5B4;
+    background-color: #1F4690;
+    width: 180px;
+    height: 50px;
+    padding: 5px 10px;
+    border-radius: 40px;
+    border: 2px solid #FFE5B4;
+    margin-top: 30px;
+}
+
+#boton-mascota:hover {
+    font-size: 21px;
+    background-color:  #FFE5B4;
+    color: black;
+    border: 2px solid #FFE5B4;
+    cursor: pointer; /*  El ícono del cursor cambia a una manita al posicionarlo sobre los botones. */
+}
+
+/* La pseudoclase :active siempre va después de la pseucoclase :hover y se activa cuando se hace click con el mouse */
+#boton-mascota:active {
+    font-size: 24px;
+    background-color: #E8AA42;
+    color: white;
+}
+
+input {
+    display: none;
+}
+
+/* Pseudoclase :checked */
+input:checked  + label {
+    background-color: #687980;
+}
+
+
+
+/* ------------------------ SECCIÓN DE SELECCIONAR ATAQUE --------------------------- */
+
+#seleccionar-ataque {
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-de-ataque {
+    background-color: #1F4690;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border-color: transparent;
+    margin: 10px;
+    width: 140px;
+    height: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    color: #FFE5B4;
+}
+
+.boton-de-ataque:hover {
+    background-color:  #0078AA;
+    border: 2px solid #FFE5B4;
+    cursor: pointer; /*  El ícono del cursor cambia a una manita al posicionarlo sobre los botones. */
+}
+
+/* La pseudoclase :active siempre va después de la pseucoclase :hover y se activa cuando se hace click con el mouse */
+.boton-de-ataque:active {
+    background-color: #E8AA42;
+    color: white;
+}
+
+#mensajes {
+    display: flex;
+    align-items: center; 
+    flex-direction: column;/* Para cambiare la direccion al elemento hijo que es #boton-reiniciar */
+    width: 500px;
+    margin-top: 25px;
+    background-color: #1F4690;
+    color: #FFE5B4;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 25px;
+}
+
+#boton-reiniciar {
+    width: 180px;
+    height: 50px;
+    border: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    color: #FFE5B4;
+    background-color: #1F4690;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    border: 2px solid #FFE5B4;
+}  
+
+#boton-reiniciar:hover {
+    font-size: 25px;
+    background-color:  #FFE5B4;
+    color: black;
+    border: 2px solid #FFE5B4;
+    cursor: pointer; /*  El ícono del cursor cambia a una manita al posicionarlo sobre los botones. */
+}
+
+/* La pseudoclase :active siempre va después de la pseucoclase :hover y se activa cuando se hace click con el mouse */
+#boton-reiniciar:active {
+    font-size: 25px;
+    background-color: #E8AA42;
+    color: white;
+}
+
+
+
+/* ------------------------ SECCIÓN DE ATAQUES --------------------------- */
+
+.ataques {
+    display: grid;
+    grid-template-columns: 150px 150px; /* Creamos 2 columnas con grid-template-columns */
+    color: #FFE5B4;
+    font-size: 25px;
+}
+
+#vidas-jugador, 
+#vidas-enemigo {
+    font-size: 30px;
+    color: #FFE5B4;
+}
+
+.ataques-jugador, 
+.ataques-enemigo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* ------------------------ MEDIA QUERIES - REPONSIVE WEB DESIGN --------------------------- */
+
+/* Con max-width:560px le estamos diciendo a CSS que desde 0 a 740px se va a aplicar todo lo que esta dentro de las llaves que es generar una sola columna en clase .tarjetas */
+@media (max-width: 560px) {
+    .tarjetas,
+    .tarjetas-ataques {
+        flex-direction: column;
+    }
+}
+
+
+
+/* ------------------------ MAPA EN CANVAS --------------------------- */
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#ver-mapa button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #FFE5B4;
+    background-color: #1F4690;
+    width: 130px;
+    height: 45px;
+    padding: 5px;
+    border-radius: 40px;
+    border: 2px solid #FFE5B4;
+    margin: 10px 5px;
+}
+
+#ver-mapa button:hover {
+    background-color:  #FFE5B4;
+    color: black;
+    border: 2px solid #FFE5B4;
+    cursor: pointer; /*  El ícono del cursor cambia a una manita al posicionarlo sobre los botones. */
+}
+
+#ver-mapa button:active {
+    background-color: #687980;
+    color: white;
+border: 2px solid #687980;
+}
+
+
+/* ------------------------ MEDIA QUERIES PARA BOTONES DEL MAPA --------------------------- */
+
+@media (max-width: 460px) {
+    #ver-mapa div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+

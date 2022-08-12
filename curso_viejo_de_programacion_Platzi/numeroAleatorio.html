@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero aleatorio</title>
+
+    <!-- Aqui comienzan los estilos CSS -->
+    <style>
+        body {
+            background-color: azure;
+            font-family: sans-serif;
+        }
+        
+        .titulo {
+            font-size: larger;
+            text-align: center;
+            /* La manera de centrar una caja o elemento HTML (no su contenido) es darle un valor "auto"al margin-left y al margin-right. */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #formulario {
+            text-align: center;
+            /* La manera de centrar una caja o elemento HTML (no su contenido) es darle un valor "auto"al margin-left y al margin-right. */
+            margin-top: 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #min,
+        #max {
+            background-color: aliceblue;
+        }
+
+        #resultado {
+            color: red;
+            font-size: large;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+    </style>
+    
+</head>
+<body>
+
+    <!-- Aqui comienza en codigo HTML -->
+
+    <h1 class="titulo">GENERADOR DE NUMEROS ALEATORIOS</h1>
+    <form id="formulario">  
+        <label for="min">Valor mínimo: </label> 
+        <input id="min" />  
+        <label for="max">Valor máximo: </label> 
+        <input id="max" />  
+        <input type="button" value="Calcular" onClick="aleatorio();"/> 
+    </form> 
+    <p id="resultado"></p>  
+
+    <!-- Aqui comienza el codigo Javascript -->
+    <script>
+        function aleatorio(){
+            let min = parseInt(document.getElementById('min').value);  
+            let max = parseInt(document.getElementById('max').value);  
+            let res = Math.floor(Math.random() * (max - min + 1)) + min;//Operacion para hallar el número aleatorio
+            document.getElementById('resultado').innerHTML = res.toString();
+        }   
+    </script>
+</body>
+</html>
