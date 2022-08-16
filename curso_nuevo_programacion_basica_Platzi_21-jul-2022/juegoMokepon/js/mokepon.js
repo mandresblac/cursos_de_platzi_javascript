@@ -30,6 +30,7 @@ const mapa = document.querySelector("#mapa");
 //Variables globales
 let jugadorId = null;
 let mokepones = []; //Arreglo vació para luego almacenar objetos o instancias de la clase Mokepon
+let mokeponesEnemigos = [];
 let ataqueJugador = [];
 let ataqueEnemigo = [];
 let opcionDeMokepones;
@@ -455,15 +456,11 @@ function pintarCanvas() {
         );
         mascotaJugadorObjeto.pintarMokepon();
 
-        enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y )
+        enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
-        hipodogeEnemigo.pintarMokepon();
-        capipepoEnemigo.pintarMokepon();
-        ratigueyaEnemigo.pintarMokepon();
-        langostelvisEnemigo.pintarMokepon();
-        tucapalmaEnemigo.pintarMokepon();
-        pydosEnemigo.pintarMokepon();
-
+        mokeponesEnemigos.forEach(function (mokepon){
+            mokepon.pintarMokepon()    
+        })
         if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0){
             revisarColision(hipodogeEnemigo);
             revisarColision(capipepoEnemigo);
@@ -490,8 +487,8 @@ function enviarPosicion(x, y){
             res.json()
                 .then(function ({enemigos}) {
                     console.log(enemigos);
-                    let mokeponEnemigo = null;
-                    enemigos.forEach(function (enemigo){
+                    mokeponesEnemigos = enemigos.map(function (enemigo){
+                        let mokeponEnemigo = null;
                         const mokeponNombre = enemigo.mokepon.nombre || "";
                         if(mokeponNombre === "Hipodoge"){
                             mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 5, "./assets/hipodoge.webp");
@@ -515,7 +512,7 @@ function enviarPosicion(x, y){
                         mokeponEnemigo.x = enemigo.x;
                         mokeponEnemigo.y = enemigo.y;
 
-                        mokeponEnemigo.pintarMokepon();
+                        return mokeponEnemigo;
                     })                    
                 })
         }
