@@ -29,6 +29,7 @@ const mapa = document.querySelector("#mapa");
 
 //Variables globales
 let jugadorId = null;
+let enemigoId = null;
 let mokepones = []; //Arreglo vació para luego almacenar objetos o instancias de la clase Mokepon
 let mokeponesEnemigos = [];
 let ataqueJugador = [];
@@ -320,7 +321,21 @@ function secuenciaAtaque(){
                 boton.style.background = "#687980"
                 boton.disabled = true;
             }
-            ataqueAleatorioEnemigo();
+            if(ataqueJugador.length === 5) {
+                enviarAtaques();
+            }
+        })
+    })
+}
+
+function enviarAtaques() {
+    fetch(`http://localhost:3000/mokepon/${jugadorId}/ataques`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataqueJugador
         })
     })
 }
@@ -459,16 +474,9 @@ function pintarCanvas() {
         enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
         mokeponesEnemigos.forEach(function (mokepon){
-            mokepon.pintarMokepon()    
+            mokepon.pintarMokepon();
+            revisarColision(mokepon);
         })
-        if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0){
-            revisarColision(hipodogeEnemigo);
-            revisarColision(capipepoEnemigo);
-            revisarColision(ratigueyaEnemigo);
-            revisarColision(langostelvisEnemigo);
-            revisarColision(tucapalmaEnemigo);
-            revisarColision(pydosEnemigo);
-        }
 }
 
 function enviarPosicion(x, y){
@@ -491,22 +499,22 @@ function enviarPosicion(x, y){
                         let mokeponEnemigo = null;
                         const mokeponNombre = enemigo.mokepon.nombre || "";
                         if(mokeponNombre === "Hipodoge"){
-                            mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 5, "./assets/hipodoge.webp");
+                            mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 5, "./assets/hipodoge.webp", enemigoId);
                         }
                         else if(mokeponNombre === "Capipepo"){
-                            mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 5, "./assets/capipepo.webp");
+                            mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 5, "./assets/capipepo.webp", enemigoId);
                         }
                         else if(mokeponNombre === "Ratigueya"){
-                            mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 5, "./assets/ratigueya.webp");
+                            mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 5, "./assets/ratigueya.webp", enemigoId);
                         }
                         else if(mokeponNombre === "Langostelvis"){
-                            mokeponEnemigo = new Mokepon("Langostelvis", "./assets/langostelvis.png", 5, "./assets/langostelvis.png");
+                            mokeponEnemigo = new Mokepon("Langostelvis", "./assets/langostelvis.png", 5, "./assets/langostelvis.png", enemigoId);
                         }
                         else if(mokeponNombre === "Tucupalma"){
-                            mokeponEnemigo = new Mokepon("Tucapalma", "./assets/tucupalma.png", 5, "./assets/tucupalma.png");
+                            mokeponEnemigo = new Mokepon("Tucapalma", "./assets/tucupalma.png", 5, "./assets/tucupalma.png", enemigoId);
                         }
                         else if(mokeponNombre === "Pydos"){
-                            mokeponEnemigo = new Mokepon("Pydos", "./assets/pydos.png", 5, "./assets/pydos.png");
+                            mokeponEnemigo = new Mokepon("Pydos", "./assets/pydos.png", 5, "./assets/pydos.png", enemigoId);
                         }
 
                         mokeponEnemigo.x = enemigo.x;
@@ -601,6 +609,8 @@ function revisarColision(enemigo) {
     detenerMovimiento();
     clearInterval(intervalo);
     /* console.log("Se detecto una colisión"); */
+
+    enemigoId = enemigo.id;
     sectionSeleccionarAtaque.style.display = "flex";
     sectionVerMapa.style.display = "none";
     seleccionarMascotaEnemigo(enemigo);

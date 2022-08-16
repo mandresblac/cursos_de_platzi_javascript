@@ -30,6 +30,10 @@ class Jugador{
         this.x = x;
         this.y = y;
     }
+
+    asignarAtaques(ataques) {
+        this.ataques = ataques;
+    }
 } 
 
 //Clase mokepon
@@ -86,6 +90,20 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
     res.send({
         enemigos
     });
+})
+
+app.post("/mokepon/:jugadorId/ataques", (req, res) =>{
+    const jugadorId = req.params.jugadorId || "";
+    const ataques = req.body.ataques || [];
+    
+    
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
+
+    if(jugadorIndex >= 0){
+        jugadores[jugadorIndex].asignarAtaques(ataques);
+    }
+
+    res.end();
 })
 
 //Le decimos a express.js que escuche continuamente en el puerto 3000 las peticiones de los clientes para que todo el tiempo pueda responderles, utilizamos la propiedad .listen() con el número del puerto que es 3000
