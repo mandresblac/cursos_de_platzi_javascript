@@ -250,7 +250,7 @@ function seleccionarMascotaJugador(){
         mascotaJugador = inputPydos.id;
     }
     else{
-        alert("No seleccionaste ninguna mascota, \n!SELECCIÓNALA AHORA!");
+        alert("No seleccionaste ninguna mascota. \n!SELECCIÓNALA AHORA!");
         return
     } 
     
