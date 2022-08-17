@@ -2,9 +2,12 @@
 const express = require("express");
 //Importamos librería "cors" dentro del proyecto
 const cors = require("cors");
-
 //Creamos una aplicación con express.js que se llamara "app"
 const app = express();
+
+//Para servir un archivo estático que permita entrar desde otros dispositivos de la misma red a nuestra aplicación
+//http://nombre_del_equipo.local:puerto    osea   http://DellOptiPlex-380.local:8080
+app.use(express.static("public"));
 
 //Deshabilitamos posibles errores de cors
 app.use(cors());
@@ -114,7 +117,7 @@ app.get("/mokepon/:jugadorId/ataques", (req, res) => {
     })
 })
 
-//Le decimos a express.js que escuche continuamente en el puerto 3000 las peticiones de los clientes para que todo el tiempo pueda responderles, utilizamos la propiedad .listen() con el número del puerto que es 3000
-app.listen(3000, () => {
-    console.log("Servidor funcionando");
+//Le decimos a express.js que escuche continuamente en el puerto 8080 las peticiones de los clientes para que todo el tiempo pueda responderles, utilizamos la propiedad .listen() con el número del puerto que es 3000
+app.listen(8080, () => {
+    console.log("Servidor corriendo en el puerto 8080");
 });
