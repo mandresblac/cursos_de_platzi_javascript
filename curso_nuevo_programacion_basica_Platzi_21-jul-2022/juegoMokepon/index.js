@@ -94,7 +94,7 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
 
 app.post("/mokepon/:jugadorId/ataques", (req, res) =>{
     const jugadorId = req.params.jugadorId || "";
-    const ataques = req.body.ataques || [];
+    const ataques = req.body.ataques || []
     
     
     const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
@@ -104,6 +104,14 @@ app.post("/mokepon/:jugadorId/ataques", (req, res) =>{
     }
 
     res.end();
+})
+
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || ""
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId)
+    res.send({
+        ataques: jugador.ataques || []
+    })
 })
 
 //Le decimos a express.js que escuche continuamente en el puerto 3000 las peticiones de los clientes para que todo el tiempo pueda responderles, utilizamos la propiedad .listen() con el número del puerto que es 3000
